@@ -1,0 +1,196 @@
+/* StyleSheet da Página */
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: monospace;
+    font-size: 17px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+}
+
+.leftDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 330px;
+    height: 100vh;
+    background-color: #171717;
+}
+
+.sptechLogo {
+    width: 150px;
+    height: 150px;
+    margin-top: 50px;
+}
+
+.schoolInfos {
+    margin-top: auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.otherInfos {
+    font-size: 13px;
+}
+
+.box {
+    background-color: #212121;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.title_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+.logoTitle {
+    width: 100px;
+    height: 100px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 110px;
+    align-self: center;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logoIcon {
+    width: 60px;
+    height: 60px;
+    margin: 0 15px
+}
+
+.logoName {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.message {
+    width: 1000px;
+    margin-left: 20px;
+}
+
+.botMessage {
+    width: 100%;
+}
+
+.inputBox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: auto;
+    height: 60px;
+    margin-bottom: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputDiv {
+    width: 1000px;
+    height: 55px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px #595959 solid;
+}
+
+.input_number {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #212121;
+    padding: 0 15px;
+    border: none;
+}
+
+.input_number:focus { /* Quando o input com classe "input_number" estiver em foco */
+    outline: none
+}
+
+.btnIcon {
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sendIcon {
+    width: 25px;
+    height: 25px;
+}
+
+.container_checkbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 700px;
+}
+
+.div_checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.checkboxes {
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    cursor: pointer;
+}
+
+label {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.btnChat {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #595959;
+    font-weight: bold;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+#hiddenText {
+    display: none;
+}
+
+#div_num {
+    display: none;
+}

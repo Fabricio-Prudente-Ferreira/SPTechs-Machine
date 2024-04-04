@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<!-- Código de Fabrício Prudente Ferreira, RA: 04241070 - 1CCO-A -->
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="style.css" rel="stylesheet">
+    </head>
+
+    <!-- Conteúdo -->
+    <body>
+        <div class="container">
+
+            <!-- Conteúdo da aba à esquerda -->
+            <div class="leftDiv">
+                <img src="icon.png" class="sptechLogo">
+                Desenvolvido por:
+                <br>
+                Fabrício Prudente Ferreira
+                <br>
+                RA: 04241070
+                <br>
+                1CCO-A
+
+                <div class="schoolInfos">
+                    Arquitetura Computacional
+                    <br>
+                    Profª Marise Miranda
+                    <br>
+                    <br>
+                    <strong>Faculdade São Paulo Tech School</strong>
+                    <br>
+                    <br>
+                    <a href="https://github.com/Fabricio-Prudente-Ferreira/SPTechs-Machine" class="otherInfos">Repositório do GitHub</a> <!-- Link para o Repositório -->
+                </div>
+            </div>
+
+            <!-- Chat -->
+            <div class="box">
+
+                <!-- Título -->
+                <div class="title_div">
+                    <img src="icon.png" class="logoTitle">
+                    <span class="title">SPTECH'S MACHINE</span>
+                </div>
+
+                <!-- Mensagem do Bot -->
+                <div class="chat">
+                    <div class="logo"> <!-- Bot -->
+                        <img src="icon.png" class="logoIcon">
+                        <span class="logoName">SPTECH's Machine</span>
+                    </div>
+                    <div class="message"> <!-- Mensagem -->
+                        <div class="botMessage" id="botMessage">
+                            <span id='txtInicial'></span>
+                            
+                            <!-- Conteúdo a ser exibido após inserir o valor (Inicialmente escondido) -->
+                            <div id="hiddenText">
+                                <br>
+                                <span id="question"></span>
+                                <br>
+                                <br>
+
+                                <!-- Checkboxes -->
+                                <div class="container_checkbox">
+                                    <div class="div_checkbox">
+                                        <input class="checkboxes" id='binario' type="checkbox">
+                                        <label for="binario" id="binLabel"></label>
+                                    </div>
+                                    <div class="div_checkbox">
+                                        <input class="checkboxes" id='octal' type="checkbox">
+                                        <label for="octal" id="octLabel"></label>
+                                    </div>
+                                    <div class="div_checkbox">
+                                        <input class="checkboxes" id='hexadecimal' type="checkbox">
+                                        <label for="hexadecimal" id="hexLabel"></label>
+                                    </div>
+                                </div>
+
+                                <!-- Botões e Resultados -->
+                                <br>
+                                <button onclick="converter()" id="btnConvert" class="btnChat"></button>
+                                <br>
+                                <br>
+                                <div id="div_num">
+                                    <br>
+                                    <span id="binConverted"></span>
+                                    <br>
+                                    <span id="octConverted"></span>
+                                    <br>
+                                    <span id="hexConverted"></span>
+                                </div>
+                                <br><br>
+                                <button onclick="limpar()" id="btnClear" class="btnChat"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Caixa de Texto -->
+                <div class="inputBox">
+                    <div class="inputDiv">
+                        <input id="input_number" type="number" class="input_number" placeholder="Insira um número">
+                        <button onclick="exibirMsg()" class="btnIcon" id="btnIcon">
+                            <img src="sendIcon.png" class="sendIcon">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+    //Iniciar animação do chat logo quando carregar a página
+    animarTexto('Insira um número decimal para converter.', 'txtInicial');
+
+    //Animação (utiliza-se a frase que será animada e o ID da tag que receberá o texto)
+    function animarTexto(texto, id){
+        document.getElementById(id).textContent = ""; //Esvaziar o conteúdo da tag antes de colocar um novo texto
+        var tamanhoTexto = texto.length; //Capturar o tamanho do texto
+        var cont = 0;
+
+        //Função de Cronometragem
+        var interval = setInterval(function(){
+            document.getElementById(id).textContent += texto[cont]; //Inserir cada caractere da frase dentro da tag
+            cont++;
+            if(cont >= tamanhoTexto) clearInterval(interval); //Parar cronometragem após inserir todos os caracteres
+        }, 25); //Executar a função a cada 25 milissegundos
+    }
+
+    //Exibir mensagem após a inserção do número
+    function exibirMsg(){
+        //Verificar se existe texto dentro da caixa de texto
+        if(document.getElementById("input_number").value == ""){
+            alert('Coloque um valor!');
+        } else {
+            hiddenText.style.display = "block"; //Mostrar a div do chat
+
+            //Animações
+            animarTexto('Para qual sistema numérico você deseja converter?', 'question');
+            animarTexto('Binário', 'binLabel');
+            animarTexto('Octal', 'octLabel');
+            animarTexto('Hexadecimal', 'hexLabel');
+            animarTexto('Converter', 'btnConvert');
+            animarTexto('Limpar', 'btnClear');
+
+            //Desativar a caixa de texto e o botão
+            var inp = document.getElementById('input_number');
+            var btn = document.getElementById('btnIcon');
+            inp.disabled = true;
+            btn.disabled = true;
+        }
+    }
+
+    //Converter os números
+    function converter(){
+        div_num.style.display = "block"; //Mostrar a div dos números convertidos
+
+        //Esvaziar as tags span antes de inserir valor (para evitar repetição de texto)
+        document.getElementById('binConverted').textContent = "";
+        document.getElementById('octConverted').textContent = "";
+        document.getElementById('hexConverted').textContent = "";
+
+        //Conversão
+        var number = Number(input_number.value);
+        var numberBinario = number.toString(2);
+        var numberOctal = number.toString(8);
+        var numberHexadecimal = number.toString(16).toUpperCase();
+
+        //Condições (verificar quais checkboxes estão marcadas)
+        if(binario.checked){
+            animarTexto(`Binário: ${numberBinario}`, 'binConverted');
+        }
+        if(octal.checked){
+            animarTexto(`Octal: ${numberOctal}`, 'octConverted');
+        }
+        if(hexadecimal.checked){
+            animarTexto(`Hexadecimal: ${numberHexadecimal}`, 'hexConverted');
+        }
+    }
+
+    //Limpar o chat
+    function limpar(){
+        //Pegar elementos através do ID
+        var inp = document.getElementById('input_number');
+        var btn = document.getElementById('btnIcon');
+
+        //Esconder o conteúdo
+        hiddenText.style.display = 'none'; 
+        div_num.style.display = 'none';
+
+        //Ativar o botão e a caixa de texto
+        inp.disabled = false;
+        btn.disabled = false;
+
+        inp.value = ""; //Esvaziar caixa de texto
+        animarTexto('Insira um número decimal para converter.', 'txtInicial'); //Refazer a animação do início da página
+    }
+</script>
